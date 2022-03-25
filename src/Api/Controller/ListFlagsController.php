@@ -40,6 +40,7 @@ class ListFlagsController extends AbstractListController
         $actor = $request->getAttribute('actor');
 
         $actor->assertRegistered();
+        $actor->assertCan('viewFlags');
 
         $actor->read_flags_at = time();
         $actor->save();
