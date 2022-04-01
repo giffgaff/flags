@@ -21,7 +21,9 @@ class ScopeFlagVisibility
         }
 
         if ($actor->hasPermission('user.viewPrivateDiscussionsWhenFlagged')) {
-            $query->orWhere('discussion.is_private', 1);
+            $query->orWhere('discussions.is_private', 1);
+        } else {
+            $query->where('discussions.is_private', 0);
         }
     }
 }
