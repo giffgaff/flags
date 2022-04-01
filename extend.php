@@ -28,6 +28,7 @@ use Flarum\Flags\PrepareFlagsApiData;
 use Flarum\Forum\Content\AssertRegistered;
 use Flarum\Post\Event\Deleted;
 use Flarum\Post\Post;
+use Flarum\Flags\Access\ScopeFlagVisibility;
 use Flarum\User\User;
 
 return [
@@ -79,4 +80,7 @@ return [
         ->listen(Deleted::class, Listener\DeleteFlags::class),
 
     new Extend\Locales(__DIR__.'/locale'),
+
+    (new Extend\ModelVisibility(Flag::class))
+        ->scope(ScopeFlagVisibility::class)
 ];
