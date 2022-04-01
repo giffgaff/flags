@@ -9,23 +9,11 @@
 
 namespace Flarum\Flags\Access;
 
-use Flarum\Extension\ExtensionManager;
-use Flarum\Tags\Tag;
 use Flarum\User\User;
 use Illuminate\Database\Eloquent\Builder;
 
 class ScopeFlagVisibility
 {
-    /**
-     * @var ExtensionManager
-     */
-    protected $extensions;
-
-    public function __construct(ExtensionManager $extensions)
-    {
-        $this->extensions = $extensions;
-    }
-
     public function __invoke(User $actor, Builder $query)
     {
         if (!$actor->hasPermission('discussion.viewFlags')) {
